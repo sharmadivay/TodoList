@@ -5,12 +5,15 @@ const Todos = ({todos,handleonDelete,handleEditItem,editItem}) => {
   return (
     <div className="container">
       <h3 className='text-center'>Todos List</h3>
+      
       <div className="row">
+      
         {todos.length===0?"no todo to display" : 
         todos.map((todo)=>{
-         return <TodoItems title={todo.title} description={todo.description} id={todo.id} handleonDelete={handleonDelete} handlEditItem={handleEditItem} editItem={editItem}/>
+         return  <TodoItems key={todo.id} title={todo.title} description={todo.description} id={todo.id} handleonDelete={handleonDelete} handlEditItem={handleEditItem} editItem={editItem}/>
       })
-    }
+  }
+  
       </div>
     </div>
   )

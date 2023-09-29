@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 
-const AddTodo = ({ handletodos, editItem, handleEditItems }) => {
+const AddTodo = ({ handletodos, editItem, handleEditValue }) => {
   const [todoTitle, setTodoTitle] = useState("");
   const [todoDesc, setTodoDesc] = useState("");
+  const [todoEditTitle, setTodoEditTitle] = useState("");
+  const [todoEditDesc, setTodoEditDesc] = useState("");
+  
 
  
     // if(editItem){
     // setTodoTitle(handleEditItems.title);
     // setTodoDesc(handleEditItems.description);
     // }
-  
+ 
   const handleTodoTitle = (event) => {
     setTodoTitle(event.target.value);
   };
@@ -17,6 +20,16 @@ const AddTodo = ({ handletodos, editItem, handleEditItems }) => {
   const handleTodoDesc = (event) => {
     setTodoDesc(event.target.value);
   };
+  const  handleTodoEditTitle=(event)=>{
+  
+    setTodoEditTitle(event.target.event)
+    
+ }
+ const  handleTodoEditDesc=(event)=>{
+  
+  setTodoEditDesc(event.target.event)
+  
+}
 
   const handleSubmit = () => {
     if (todoTitle.trim().length > 0) {
@@ -25,6 +38,16 @@ const AddTodo = ({ handletodos, editItem, handleEditItems }) => {
     setTodoTitle(" ");
     setTodoDesc(" ");
   };
+  
+
+ const handleEditSubmit=()=>{
+  
+  handleEditValue(todoEditTitle, todoEditDesc);
+  
+  setTodoEditTitle(" ");
+  setTodoEditDesc(" ");
+}
+
   return (
     <div className="container">
       {editItem?
@@ -74,8 +97,8 @@ const AddTodo = ({ handletodos, editItem, handleEditItems }) => {
             className="form-control"
             id="title"
             aria-describedby="emailHelp"
-            value={todoTitle}
-            onChange={handleTodoTitle}
+            value={todoEditTitle}
+            onChange={handleTodoEditTitle}
           />
         </div>
         <div className="mb-3">
@@ -86,15 +109,15 @@ const AddTodo = ({ handletodos, editItem, handleEditItems }) => {
             type="text"
             className="form-control"
             id="desc"
-            value={todoDesc}
-            onChange={handleTodoDesc}
+            value={todoEditDesc}
+            onChange={handleTodoEditDesc}
           />
         </div>
         
           <button
             type="submit"
             className="btn btn-success"
-            onClick={handleSubmit}
+            onClick={handleEditSubmit}
           >
             Edit Todo
           </button>
