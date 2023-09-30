@@ -1,6 +1,7 @@
 import React from 'react'
 import "../App.css"
-const TodoItems = ({title,id,description,handlEditItem,handleonDelete,editItem}) => {
+const TodoItems = ({todo,handlEditItem,handleonDelete}) => {
+  const {title,id,description} = todo;
   return (
     
     <div className='col-sm-4 mt-5 '>
@@ -12,8 +13,8 @@ const TodoItems = ({title,id,description,handlEditItem,handleonDelete,editItem})
     <div className='button_div'>
       
     
-    <button type="button" className="btn btn-outline-danger " onClick={()=>handleonDelete(id)} >Delete</button>
-    <button type="button" className="btn btn-outline-danger  " onClick={()=>handlEditItem(id )
+    <button type="button" className="btn btn-outline-danger " onClick={()=>{handleonDelete(id)}} >Delete</button>
+    <button type="button" className="btn btn-outline-danger  " onClick={()=>{handlEditItem(id)}
     }>Edit</button>
     </div>
   </div>

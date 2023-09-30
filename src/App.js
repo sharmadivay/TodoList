@@ -8,31 +8,40 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./About";
 
 function App() {
+    // to edit
+    const [editItem, setEditItem] = useState(null);
+    const [editId, setEditId] = useState(null);
+    const [todos, setTodos] = useState([]);
+    const [editValue,setEditValue]=useState(todos);
+    const [searchTodo, setSearchTodo] = useState("");
+
+
+    // useEffect(()=>{
+    //   setTodos(getData())
+    // },[])
   // delete button
   const handleonDelete = (key) => {
-    const newtodo = todos.filter((todo) => todo.id !== key);
-    setTodos(newtodo);
+    // const newtodo = todos.filter((todo) => todo.id !== key);
+    // setTodos(newtodo);
   };
-  const [searchTodo, setSearchTodo] = useState("");
 
   //  get data from local storage
-  const getDate = () => {
-    let list = localStorage.getItem("todo-list");
-    if (list) {
-      return JSON.parse(localStorage.getItem("todo-list"));
-    } else {
-      return [];
-    }
-  };
-  const [todos, setTodos] = useState(getDate());
+  // const getData = () => {
+  //   let list = localStorage.getItem("todo-list");
+  //   if (list) {
+  //      return JSON.parse(localStorage.getItem("todo-list"));
+  //   } else {
+  //     return [];
+  //   }
+  // };
 
   // add data to local variable
-  useEffect(() => {
-    localStorage.setItem("todo-list", JSON.stringify(todos));
-  }, [todos]);
+  // useEffect(() => {
+  //   localStorage.setItem("todo-list", JSON.stringify(todos));
+  // }, [todos]);
 
   // what to add in todo
-  const addTodos = (title, description) => {
+  const handletodos = ({title, description}) => {
     const newtodo = {
       id: nanoid(),
       title: title,
@@ -41,62 +50,67 @@ function App() {
     const newtodos = [...todos, newtodo];
     setTodos(newtodos);
   };
-  // to edit
-  const [editItem, setEditItem] = useState(true);
-  const [editnew, setEditNew] = useState("");
-  const [editvalue,setEditvalue]=useState('');
+
   // to find id 
   const handleEditItem = (id) => {
-   
-    let newEditItem = todos.find((e) => {
-      return e.id === id;
-    });
-
-    setEditItem(false);
-    setEditvalue(newEditItem)
-
-    setEditNew(id)
-    
+    setEditId(id)
   };
-  // to chnage values
+  // to change values
+  // useEffect(() => {
+  //   if(editId){
+  //     const intialObj = todos.filter((obj) => obj.id === editId);
+  //     setEditItem(intialObj)
+  //   }
+  // }, [editId]);
 
-  const handleEditValue=(title,desc)=>{
-      editvalue.title = title;
-      editvalue.description = desc;
-      todos[editnew]=editvalue;
+  
+ 
+  const handleEditValue=({title,desc})=>{
+      console.log(title, desc)
+      // const newEdit = editvalue.map((value)=>{
+      //   if(value.id === editnew){
+      //     value.title =title ;
+      //     value.description = desc ;
+      //     return value ; 
+      //   }else{
+      //     return value ;
+      //   }
+        
+      // })
+      // console.log(newEdit)
+      // setEditvalue(newEdit)
+      // setTodos(editvalue)
        }
   return (
-    <Router>
-      <div className="App">
-        <Header handleSearchTodo={setSearchTodo} />
-        <Routes>
-          <Route path="/about" element={<About />} />
+    // <Router>
+    //   <div className="App">
+    //     <Header handleSearchTodo={setSearchTodo} />
+    //     <Routes>
+    //       <Route path="/about" element={<About />} />
 
-          <Route
-            path="/"
-            element={
+    //       <Route
+    //         path="/"
+    //         element={
               <>
                 <AddTodo
-                  handletodos={addTodos}
+                  handletodos={handletodos}
                   editItem={editItem}
                   handleEditValue={handleEditValue}
                 />
                 <Todos
-                  todos={todos.filter((todo) =>
-                    todo.title.toLowerCase().includes(searchTodo)
-                  )}
+                  todos={todos}
                   handleonDelete={handleonDelete}
                   handleEditItem={handleEditItem}
                   editItem={editItem}
                 />
               </>
-            }
-          />
-        </Routes>
+    //         }
+    //       />
+    //     </Routes>
 
-        <Footer />
-      </div>
-    </Router>
+    //     <Footer />
+    //   </div>
+    // </Router>
   );
 }
 
