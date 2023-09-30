@@ -16,8 +16,8 @@ function List() {
     }, [])
     // delete button
     const handleonDelete = (key) => {
-        // const newtodo = todos.filter((todo) => todo.id !== key);
-        // setTodos(newtodo);
+        const newtodo = todos.filter((todo) => todo.id !== key);
+        setTodos(newtodo);
     };
 
     //  get data from local storage
@@ -31,9 +31,9 @@ function List() {
     };
 
     // add data to local variable
-    // useEffect(() => {
-    //   localStorage.setItem("todo-list", JSON.stringify(todos));
-    // }, [todos]);
+    useEffect(() => {
+      localStorage.setItem("todo-list", JSON.stringify(todos));
+    }, [todos]);
 
     // what to add in todo
     const handletodos = ({ title, description }) => {
@@ -56,7 +56,7 @@ function List() {
             const intialObj = todos.filter((obj) => obj.id === editId);
             setEditItem(intialObj[0])
         }
-    }, [editId]);
+    }, [editId,todos]);
 
 
 
@@ -71,7 +71,17 @@ function List() {
         //   }
 
         // })
+        
         const index = todos.findIndex((obj) => obj.id === editId);
+        const newtodo ={
+            id:editId,
+            title:title,
+            description:desc
+        }
+
+        todos.splice(index,1,newtodo)
+       setTodos(todos)
+        setEditItem(null)
 
     }
     return (

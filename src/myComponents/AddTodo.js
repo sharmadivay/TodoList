@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const AddTodo = ({ handletodos, editItem, setEditItem, handleEditValue }) => {
   const [todoTitle, setTodoTitle] = useState("");
   const [todoDesc, setTodoDesc] = useState("");
-  const [todoEditTitle, setTodoEditTitle] = useState("");
-  const [todoEditDesc, setTodoEditDesc] = useState("");
+  // const [todoEditTitle, setTodoEditTitle] = useState("");
+  // const [todoEditDesc, setTodoEditDesc] = useState("");
 
 
 
@@ -46,12 +46,10 @@ const AddTodo = ({ handletodos, editItem, setEditItem, handleEditValue }) => {
   const handleEditSubmit = () => {
 
     handleEditValue({
-      title: todoEditTitle,
-      desc: todoEditDesc
+      title: editItem.title,
+      desc: editItem.description
     });
-
-    setTodoEditTitle(" ");
-    setTodoEditDesc(" ");
+    
   }
 
   return (
@@ -87,7 +85,14 @@ const AddTodo = ({ handletodos, editItem, setEditItem, handleEditValue }) => {
               className="form-control"
               id="desc"
               value={editItem.description}
-              onChange={(e) => { setTodoEditDesc(e.target.value) }}
+              onChange={(e) => {
+                const newObj = {
+                  id: editItem.id,
+                  title: editItem.title,
+                  description: e.target.value
+                }
+                setEditItem(newObj)
+              }}
             />
           </div>
 

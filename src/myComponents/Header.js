@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export default function Header({handleSearchTodo}) {
+export default function Header() {
   return (
     <div>
       
@@ -21,7 +21,7 @@ export default function Header({handleSearchTodo}) {
         </li>
       </ul>
       <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(event)=>{handleSearchTodo(event.target.value)}}/>
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         
       </form>
     </div>
