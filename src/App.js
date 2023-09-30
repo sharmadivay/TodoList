@@ -1,18 +1,18 @@
 import Footer from "./myComponents/Footer";
-import React from "react";
+import React ,{useState}from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import List from "./myComponents/List";
 import Header from "./myComponents/Header"
 import About from "./About"
 function App() {
-  // to edit
-
+    const [searchTodo, setSearchTodo] = useState("");
+    
   return (
     <Router>
       <div className="App">
-        <Header  />
+        <Header handleSearchTodo={setSearchTodo}  />
         <Routes>
-          <Route path="/" element={<List />} />
+          <Route path="/" element={<List searchTodo={searchTodo} />} />
           <Route path="/about" element={<About />} />
         </Routes>
         <Footer />

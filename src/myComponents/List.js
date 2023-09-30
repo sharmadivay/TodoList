@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import AddTodo from './AddTodo';
 import Todos from './Todos';
 
-function List() {
+function List({searchTodo}) {
     const [editItem, setEditItem] = useState(null);
     const [editId, setEditId] = useState(null);
     const [todos, setTodos] = useState([]);
@@ -93,7 +93,7 @@ function List() {
                 handleEditValue={handleEditValue}
             />
             <Todos
-                todos={todos}
+                 todos={todos.filter((todo) => todo.title.toLowerCase().includes(searchTodo))}
 
                 handleonDelete={handleonDelete}
                 handleEditItem={handleEditItem}

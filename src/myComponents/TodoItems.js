@@ -4,7 +4,7 @@ const TodoItems = ({todo,handlEditItem,handleonDelete}) => {
   const {title,id,description} = todo;
   return (
     
-    <div className='col-sm-4 mt-5 '>
+    <div className='col-sm-4 mt-5 todoDiv '>
       <div className="card"  style={{width: "18rem"}}>
   <div className="card-body">
     <h5 className="card-title" id={id}>{title}</h5>
