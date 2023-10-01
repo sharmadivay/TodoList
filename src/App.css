@@ -29,3 +29,8 @@ body{
     left: 0;
     bottom: 0;
 }
+pre{
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    text-align: justify;
+}

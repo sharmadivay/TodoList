@@ -94,7 +94,8 @@ function List({ searchTodo }) {
                 handleEditValue={handleEditValue}
             />
             <Todos
-                todos={todos.filter((todo) => todo.title.toLowerCase().includes(searchTodo))}
+                todos={todos.filter((todo) => todo.title.toLowerCase().includes(searchTodo.toLowerCase()))}
+                
 
                 handleonDelete={handleonDelete}
                 handleEditItem={handleEditItem}
