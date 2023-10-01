@@ -6,8 +6,6 @@ const AddTodo = ({ handletodos, editItem, setEditItem, handleEditValue }) => {
   // const [todoEditTitle, setTodoEditTitle] = useState("");
   // const [todoEditDesc, setTodoEditDesc] = useState("");
 
-
-
   // if(editItem){
   // setTodoTitle(handleEditItems.title);
   // setTodoDesc(handleEditItems.description);
@@ -44,12 +42,11 @@ const AddTodo = ({ handletodos, editItem, setEditItem, handleEditValue }) => {
 
 
   const handleEditSubmit = () => {
-
     handleEditValue({
       title: editItem.title,
       desc: editItem.description
     });
-    
+
   }
 
   return (

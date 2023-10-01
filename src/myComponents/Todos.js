@@ -11,7 +11,7 @@ const Todos = ({ todos, handleonDelete, handleEditItem, editItem }) => {
         {todos.length === 0 ? "no todo to display" :
           todos.map((todo) => {
             return <TodoItems key={todo.id}
-              todo={todo} handleonDelete={handleonDelete} handlEditItem={handleEditItem} editItem={editItem} />
+              todo={todo} handleonDelete={handleonDelete} handleEditItem={handleEditItem} editItem={editItem} />
           })
         }
 

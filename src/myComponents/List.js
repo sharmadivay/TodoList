@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import AddTodo from './AddTodo';
 import Todos from './Todos';
 
-function List({searchTodo}) {
+function List({ searchTodo }) {
     const [editItem, setEditItem] = useState(null);
     const [editId, setEditId] = useState(null);
     const [todos, setTodos] = useState([]);
@@ -32,7 +32,7 @@ function List({searchTodo}) {
 
     // add data to local variable
     useEffect(() => {
-      localStorage.setItem("todo-list", JSON.stringify(todos));
+        localStorage.setItem("todo-list", JSON.stringify(todos));
     }, [todos]);
 
     // what to add in todo
@@ -53,10 +53,11 @@ function List({searchTodo}) {
     // to change values
     useEffect(() => {
         if (editId) {
+            console.log(editId)
             const intialObj = todos.filter((obj) => obj.id === editId);
             setEditItem(intialObj[0])
         }
-    }, [editId,todos]);
+    }, [editId]);
 
 
 
@@ -69,18 +70,18 @@ function List({searchTodo}) {
         //   }else{
         //     return value ;
         //   }
-
         // })
-        
-        const index = todos.findIndex((obj) => obj.id === editId);
-        const newtodo ={
-            id:editId,
-            title:title,
-            description:desc
-        }
 
-        todos.splice(index,1,newtodo)
-       setTodos(todos)
+        const index = todos.findIndex((obj) => obj.id === editId);
+        const newtodo = {
+            id: editId,
+            title: title,
+            description: desc
+        }
+        const newTodos = [...todos];
+        newTodos.splice(index, 1, newtodo)
+        setTodos(newTodos)
+        setEditId(null)
         setEditItem(null)
 
     }
@@ -93,7 +94,7 @@ function List({searchTodo}) {
                 handleEditValue={handleEditValue}
             />
             <Todos
-                 todos={todos.filter((todo) => todo.title.toLowerCase().includes(searchTodo))}
+                todos={todos.filter((todo) => todo.title.toLowerCase().includes(searchTodo))}
 
                 handleonDelete={handleonDelete}
                 handleEditItem={handleEditItem}
