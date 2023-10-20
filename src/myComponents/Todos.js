@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoItems from './TodoItems'
 
-const Todos = ({ todos, handleonDelete, handleEditItem, editItem }) => {
+const Todos = ({ todos, handleonDelete, handleEditItem, editItem}) => {
   return (
     <div className="container">
       <h3 className='text-center'>Todos List</h3>
@@ -11,6 +11,7 @@ const Todos = ({ todos, handleonDelete, handleEditItem, editItem }) => {
         {todos.length === 0 ? "no todo to display" :
           todos.map((todo) => {
             return <TodoItems key={todo.id}
+            todos={todos}
               todo={todo} handleonDelete={handleonDelete} handleEditItem={handleEditItem} editItem={editItem} />
           })
         }

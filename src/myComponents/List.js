@@ -7,10 +7,10 @@ function List({ searchTodo }) {
     const [editItem, setEditItem] = useState(null);
     const [editId, setEditId] = useState(null);
     const [todos, setTodos] = useState([]);
-    // const [editValue, setEditValue] = useState(todos);
-    // const [searchTodo, setSearchTodo] = useState("");
+  
+    
 
-
+    
     useEffect(() => {
         setTodos(getData())
     }, [])
@@ -19,6 +19,7 @@ function List({ searchTodo }) {
         const newtodo = todos.filter((todo) => todo.id !== key);
         setTodos(newtodo);
     };
+    
 
     //  get data from local storage
     const getData = () => {
@@ -41,10 +42,14 @@ function List({ searchTodo }) {
             id: nanoid(),
             title: title,
             description: description,
+            
+            
         };
         const newtodos = [...todos, newtodo];
         setTodos(newtodos);
+        
     };
+   
 
     // to find id 
     const handleEditItem = (id) => {
@@ -53,30 +58,26 @@ function List({ searchTodo }) {
     // to change values
     useEffect(() => {
         if (editId) {
-            console.log(editId)
+            
             const intialObj = todos.filter((obj) => obj.id === editId);
             setEditItem(intialObj[0])
         }
     }, [editId]);
+   
+
 
 
 
     const handleEditValue = ({ title, desc }) => {
-        // const newEdit = editvalue.map((value)=>{
-        //   if(value.id === editnew){
-        //     value.title =title ;
-        //     value.description = desc ;
-        //     return value ; 
-        //   }else{
-        //     return value ;
-        //   }
-        // })
+     
 
         const index = todos.findIndex((obj) => obj.id === editId);
         const newtodo = {
             id: editId,
             title: title,
-            description: desc
+            description: desc ,
+            checked : false 
+            
         }
         const newTodos = [...todos];
         newTodos.splice(index, 1, newtodo)
@@ -85,6 +86,9 @@ function List({ searchTodo }) {
         setEditItem(null)
 
     }
+
+   
+
     return (
         <>
             <AddTodo
@@ -92,15 +96,19 @@ function List({ searchTodo }) {
                 setEditItem={setEditItem}
                 editItem={editItem}
                 handleEditValue={handleEditValue}
+               
             />
             <Todos
                 todos={todos.filter((todo) => todo.title.toLowerCase().includes(searchTodo.toLowerCase()))}
                 
-
+                
                 handleonDelete={handleonDelete}
                 handleEditItem={handleEditItem}
                 editItem={editItem}
                 setEditItem={setEditItem}
+               
+               
+               
             />
         </>
     )
