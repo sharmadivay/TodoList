@@ -62,7 +62,7 @@ function List({ searchTodo }) {
             const intialObj = todos.filter((obj) => obj.id === editId);
             setEditItem(intialObj[0])
         }
-    }, [editId]);
+    }, [editId,todos]);
    
 
 
